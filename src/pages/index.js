@@ -1,10 +1,16 @@
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
 import Hello from '../components/Hello.jsx';
 
 const HomePage = () => {
   return (
     <div>
-      <Content />
+      <Head>
+        <title>Next.js template</title>
+        <meta name='keywords' content='next next.js javascript template' />
+      </Head>
+
+      <Navbar />
       <Hello message={'Welcome to Next.js!'} />
     </div>
   )
@@ -12,7 +18,7 @@ const HomePage = () => {
 
 export default HomePage
 
-const Content = () => {
+const Navbar = () => {
   return (
     <ul>
       <li>
