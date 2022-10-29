@@ -1,15 +1,15 @@
 import { server } from '../../config';
-import Head from 'next/head';
+// import Head from 'next/head';
 import Hello from '../components/Hello.jsx';
 import ArticleList from '../components/ArticleList';
 
 const HomePage = ({ articles }) => {
   return (
     <div>
-      <Head>
+      {/* <Head>
         <title>Next.js template</title>
         <meta name='keywords' content='next next.js javascript template' />
-      </Head>
+      </Head> */}
 
       <Hello message={'Welcome to Next.js!'} />
       <h1>Fetch articles:</h1>

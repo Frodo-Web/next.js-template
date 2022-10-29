@@ -1,4 +1,5 @@
-import Head from 'next/head';
+// import Head from 'next/head';
+import Meta from '../../../components/Meta';
 import { useRouter } from 'next/router'
 
 const Post = () => {
@@ -7,10 +8,11 @@ const Post = () => {
 
   return (
     <>
-    <Head>
+      <Meta title={`Post: ${pid}`} description={`The ${pid} post page`} />
+      {/* <Head>
       <title>Post: {pid}</title>
       <meta name='keywords' content={`next.js post ${pid}`} />
-    </Head>
+    </Head> */}
 
       <p>Post: {pid}</p>
     </>
