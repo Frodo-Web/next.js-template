@@ -31,10 +31,6 @@ export const getStaticProps = async () => {
   } else {
      const articlesData = await import('../../data');
      articles = articlesData.articles;
-    // const ttt = await import('../../data');
-    // console.log(ttt)
-    // articles = articlesData;
-     
   }
 
   return {
