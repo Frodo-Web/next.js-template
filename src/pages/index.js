@@ -1,4 +1,5 @@
 import { server } from '../../config';
+// import { articles as articlesData } from '../../data';
 // import Head from 'next/head';
 import Hello from '../components/Hello.jsx';
 import ArticleList from '../components/ArticleList';
@@ -21,13 +22,25 @@ const HomePage = ({ articles }) => {
 export default HomePage;
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/articles`);
-  // const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
-  const articles = await res.json();
+  let articles = null;
+
+  if (server !== 'none') {
+    const res = await fetch(`${server}/api/articles`);
+    // const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
+     articles = await res.json();
+  } else {
+     const articlesData = await import('../../data');
+     articles = articlesData.articles;
+    // const ttt = await import('../../data');
+    // console.log(ttt)
+    // articles = articlesData;
+     
+  }
 
   return {
     props: {
       articles
-    }
+    },
+    revalidate: 10,
   }
 }

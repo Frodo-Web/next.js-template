@@ -38,9 +38,18 @@ const Article = ({ article }) => {
 // }
 
 export const getStaticProps = async (context) => {
-    // const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
-    const res = await fetch(`${server}/api/articles/${context.params.id}`);
-    const article = await res.json();
+
+    let article = null;
+
+    if (server !== 'none') {
+        // const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
+        const res = await fetch(`${server}/api/articles/${context.params.id}`);
+        article = await res.json();
+    } else {
+        const articlesData = await import('../../../../data');
+        const filtered = articlesData.articles.filter(article => article.id === context.params.id);
+        article = filtered[0];
+    }
 
     return {
         props: {
@@ -50,9 +59,17 @@ export const getStaticProps = async (context) => {
 }
 
 export const getStaticPaths = async () => {
-    // const res = await fetch(`https://jsonplaceholder.typicode.com/posts/`);
-    const res = await fetch(`${server}/api/articles/`);
-    const articles = await res.json();
+
+    let articles = null;
+
+    if (server !== 'none') {
+        // const res = await fetch(`https://jsonplaceholder.typicode.com/posts/`);
+        const res = await fetch(`${server}/api/articles/`);
+        const articles = await res.json();
+    } else {
+        const articlesData = await import('../../../../data');
+        articles = articlesData.articles;
+    }
 
     const ids = articles.map(article => article.id);
     const paths = ids.map(id => ({ params: { id: id.toString() } }));
