@@ -13,6 +13,7 @@ const HomePage = ({ articles }) => {
       </Head> */}
 
       <Hello message={'Welcome to Next.js!'} />
+      <div>process.env.NEXT_PUBLIC_ANALYTICS_ID: {process.env.NEXT_PUBLIC_ANALYTICS_ID}</div>
       <h1>Fetch articles:</h1>
       <ArticleList articles={articles} />
     </div>
@@ -25,6 +26,7 @@ export const getStaticProps = async () => {
   let articles = null;
 
   if (server !== 'none') {
+    console.log('Access ' + process.env.DB_HOST);
     const res = await fetch(`${server}/api/articles`);
     // const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
      articles = await res.json();
