@@ -1,6 +1,6 @@
 'use client';
 
-const Home = ({ recentPosts }) => {
+const HomePage = ({ recentPosts }) => {
     return (
         <div>
             {recentPosts.map((post) => (
@@ -9,4 +9,4 @@ const Home = ({ recentPosts }) => {
         </div>
     );
 }
-export default Home;
+export default HomePage;
